@@ -1,10 +1,15 @@
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///prueba.db'
 db = SQLAlchemy (app)
+
+app.config['SECRET_KEY'] = '123456'
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 #crea el modelo en la base de datos
 
